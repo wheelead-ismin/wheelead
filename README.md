@@ -1,4 +1,4 @@
-[![pipeline status](https://gitlab.emse.fr/arem/site-web/badges/main/pipeline.svg)](https://gitlab.emse.fr/arem/site-web/-/commits/main)
+
 
 # **Site web de wheelead**
 
@@ -54,9 +54,7 @@ Ce projet est en développement et maintien actif.
 
 Merci aux auteurs, du plus récent au plus ancien :
 * Éléa Robert
-* Titouan Real
 
-Merci à Titouan Real pour l'initiation de ce projet.
 
 Merci à [Hugo](https://gohugo.io/) de fournir ce générateur de site statique.
 
