@@ -1,0 +1,38 @@
+{{ define "main" }}
+    <main aria-role="main">
+        <div>
+            <!-- *Titre -->
+            <h1>
+                <!-- {{ .Site.Title }} remplacé par une image du logo AREM suite au CA d'avril 2023-->
+                {{ partial "logo-title.html" . }}
+            </h1>
+
+            <!-- *Sous-titre -->
+            <h2 style="margin-top: 0">
+                {{ .Site.Params.home_subtitle}}
+            </h2>
+
+            <!-- *Icônes de réseaux sociaux -->
+            {{ with .Site.Params.Social }}
+                {{ partial "social_icons.html" . }}
+            {{ end }}
+
+            <!-- *Slider des articles mis en avant -->
+            {{ $featured_articles := where (where .Site.Pages ".Params.featured" "!=" nil) ".Params.featured" true }}
+            {{ with $featured_articles }}
+                <h2>
+                    {{ i18n "news" }}
+                </h2>
+                {{ partial "slider.html" $featured_articles }}
+            {{ end }}
+
+            <!-- *Logos des sponsors -->
+            {{ with .Site.Params.partner }}
+                <h2>
+                    {{ i18n "partners" (len .) }}
+                </h2>
+                {{ partial "partners.html" . }}
+            {{ end }}
+        </div>
+    </main>
+{{ end }}

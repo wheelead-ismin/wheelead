@@ -1,0 +1,5 @@
+*desktop.ini
+.vscode/*
+.hugo_build.lock
+resources/*
+themes/*

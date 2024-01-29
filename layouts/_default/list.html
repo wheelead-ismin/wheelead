@@ -1,0 +1,58 @@
+{{ define "main" }}
+    {{ $paginator := .Paginate .Data.Pages }}
+
+    <main class="posts">
+        <!-- *Informations sur l'article (en-tête) -->
+        <div class="post-info">
+            <!-- *Langues disponibles pour cet article -->
+            {{ if .IsTranslated }}
+                <p>
+                    {{ i18n "postAvailable" }}
+                    {{ range .Translations }}
+                        <a href="{{ .Permalink }}">
+                            <span class="flag flag-icon flag-icon-{{ index $.Site.Data.langFlags (.Lang) }} flag-icon-squared">
+                            </span>
+                        </a>
+                    {{ end}}
+                </p>
+            {{ end }}
+        </div>
+
+        <!-- *Contenu de la page -->
+        <h1>{{ .Title }}</h1>
+
+        {{ if .Content }}
+            <div class="content">
+                {{ .Content }}
+            </div>
+        {{ end }}
+
+        {{ range $paginator.Pages.GroupByDate "2006" }}
+            <div class="posts-group">
+                <div class="post-year">
+                    {{ .Key }}
+                </div>
+
+                <ul class="posts-list">
+                    {{ range $page := .Pages }}
+                        <li class="post-item">
+                            <a href="{{ .Permalink }}">
+                                <span class="post-title">{{.Title}}</span>
+                                <span class="post-day">
+                                    {{ if .Date }}
+                                        {{ time.Format "02 January" .Date }}
+                                        {{ if (isset .Params "dateend") }}
+                                            -
+                                            {{ time.Format "02 January" .Params.dateend }}
+                                        {{ end }}
+                                    {{ end }}
+                                </span>
+                            </a>
+                        </li>
+                    {{ end }}
+                </ul>
+            </div>
+        {{ end }}
+    {{ partial "pagination-list.html" . }}
+    </main>
+{{ end }}

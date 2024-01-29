@@ -1,0 +1,57 @@
+{{ $featured_articles := . }}
+{{ $nb_featured := len $featured_articles }}
+<!-- *Le slideshow -->
+<div id="index-slideshow" class="slideshow" data-nb-slides="{{ $nb_featured }}">
+    <!-- *Zone principale et flèches droite gauche -->
+    <div class="slideshow-top">
+        <!-- Flèche gauche -->
+        <input type="button" id="arrow-left">
+        <label onclick="goToLeftSlide()" class="arrow not-selectable" for="arrow-left" style="transform: rotate(-90deg)">
+            <svg version='1.1' xmlns='http://www.w3.org/2000/svg' fill="currentColor" xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px'
+                viewBox='0 0 330.002 330.002' style='enable-background:new 0 0 330.002 330.002;' xml:space='preserve'>
+            <path id='XMLID_105_' d='M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21
+                c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3
+                C331.972,223.623,330.628,214.221,324.001,209.25z'/>
+            </svg>
+        </label>
+        <!-- La boite principale. -->
+        <!-- Toutes les slides sont dedans, mais toutes sauf une sont trop à côté pour être vues. Une seule est en face du "trou" de la caméra. -->
+        <div class="viewframe">
+            <!-- Containeur contenant toutes les slides (seule une est visible) -->
+            <div class="all-slides"
+                 style="width: calc(100%*{{ $nb_featured }})">
+                {{ range $index, $val := $featured_articles.ByParam "featured_weight" }}
+                    <a href='{{ .Permalink }}'>
+                        <div class="slide-content" style="width: calc(100%/{{ $nb_featured }})">
+                            <img src="{{ .Params.cover_url }}">
+                        </div>
+                    </a>
+                {{ end }}
+            </div>
+        </div>
+        <!-- Flèche droite -->
+        <input type="button" id="arrow-right">
+        <label onclick="goToRightSlide()" class="arrow not-selectable" for="arrow-right" style="transform: rotate(90deg)">
+            <svg version='1.1' xmlns='http://www.w3.org/2000/svg' fill="currentColor" xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px'
+                viewBox='0 0 330.002 330.002' style='enable-background:new 0 0 330.002 330.002;' xml:space='preserve'>
+            <path id='XMLID_105_' d='M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21
+                c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3
+                C331.972,223.623,330.628,214.221,324.001,209.25z'/>
+            </svg>
+        </label>
+    </div>
+    <!-- *Zone secondaire : boutons inférieures -->
+    <div class="slideshow-bottom">
+        <div class="bullets not-selectable">
+            {{ range $index, $val := $featured_articles.ByParam "featured_weight" }}
+                <input type="radio"
+                       name="bullet"
+                       id="input-slide-{{ add $index 1}}"
+                       {{ if (eq $index 0) }} checked {{ end }}/>
+                <label for="input-slide-{{ add $index 1}}"
+                       onclick="setSlide({{add $index 1}})">
+                </label>
+            {{ end }}
+        </div>
+    </div>
+</div>

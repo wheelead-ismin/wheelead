@@ -1,0 +1,14 @@
+<!-- *Affichage des logos de nos sponsors -->
+{{ $partners := . }}
+<div class="partners">
+    {{ range $partners }}
+        <a class="partner-logo"
+        href="{{ .url }}"
+        target="_blank"
+        rel="noopener"
+        title="{{ .name }}">
+            <img src="{{ .logo }}"
+                 title="{{ .name }}">
+        </a>
+    {{ end }}
+</div>

@@ -1,0 +1,15 @@
+<!-- *Icônes réseaux sociaux -->
+{{ $social_icons := . }}
+<div class="not-selectable">
+    {{ range $social_icons }}
+        &nbsp;
+        <a href="{{ .url }}"
+        target="_blank"
+        rel="noopener"
+        title="{{ .name | humanize }}"
+        style="text-decoration: none">
+            {{ partial "svg.html" . }}
+        </a>
+        &nbsp;
+    {{ end }}
+</div>

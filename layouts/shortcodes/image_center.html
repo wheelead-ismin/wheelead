@@ -1,0 +1,12 @@
+<figure class="center" style='width:{{ .Get "width" }}'>
+    <img src='{{ .Get "source" }}'
+         alt='{{ .Get "alt" }}'
+         style='{{ if not (isset .Params "title") }}
+                    border-radius:10px;
+                {{ end }}'>
+    {{ if isset .Params "title" }}
+        <figcaption>
+            {{ .Get "title" }}
+        </figcaption>
+    {{ end }}
+</figure>

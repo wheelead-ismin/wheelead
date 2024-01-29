@@ -1,0 +1,103 @@
+{{ define "main" }}
+    <main class="post">
+        <!-- *Informations sur l'article (en-tête) -->
+        <div class="post-info">
+            {{ if or .Date (isset .Params "place") }}
+                <p>
+                    <!-- *Date de l'évènement -->
+                    {{ if .Date }}
+                        <a href='{{ "calendrier" | absLangURL }}'>
+                            {{ time.Format ":date_full" .Date }}
+                            {{ if (isset .Params "dateend") }}
+                                -
+                                {{ time.Format ":date_full" .Params.dateend }}
+                            {{ end }}
+                        </a>
+                    {{ end }}
+
+                    <!-- *Séparateur dans le cas où une date et un lieu sont définis -->
+                    {{ if and .Date (isset .Params "place") }}
+                        |
+                    {{ end }}
+
+                    <!-- *Lieu de l'évènement -->
+                    {{ if (isset .Params "place") }}
+                        {{ .Params.place }}
+                    {{ end }}
+                </p>
+            {{ end }}
+
+            <p>
+                <!-- *Temps de lecture -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                {{ i18n "readingTime" .Page.ReadingTime }}
+                |
+
+                <!-- *Nombre de mots -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                {{ i18n "wordCount" .Page.WordCount }}
+            </p>
+
+            <!-- *Langues disponibles pour cet article -->
+            {{ if .IsTranslated }}
+                <p>
+                    {{ i18n "postAvailable" }}
+                    {{ range .Translations }}
+                        <a href="{{ .Permalink }}">
+                            <span class="flag flag-icon flag-icon-{{ index $.Site.Data.langFlags (.Lang) }} flag-icon-squared">
+                            </span>
+                        </a>
+                    {{ end}}
+                </p>
+            {{ end }}
+        </div>
+
+        <!-- *Article -->
+        <article>
+            <!-- *Titre -->
+            <h2 class="post-title">
+                <a href="{{ .Permalink }}">
+                    {{ .Title | markdownify }}
+                </a>
+            </h2>
+
+            <!-- *Sommaire -->
+            {{ if .Params.toc }}
+                <hr />
+                <aside id="toc">
+                    <div class="toc-title">
+                        {{ i18n "tableOfContents" }}
+                    </div>
+                    {{ .TableOfContents }}
+                </aside>
+                <hr />
+            {{ end }}
+
+            <!-- *Contenu de l'article -->
+            <div class="post-content">
+                {{ .Content }}
+            </div>
+        </article>
+
+        <hr />
+
+        <!-- *Informations sur l'article (pied de page) -->
+        <div class="post-info">
+            {{ with .Params.authors }}
+                {{ partial "authors.html" . }}
+            {{ end }}
+            {{ with .Params.translators }}
+                {{ partial "translators.html" . }}
+            {{ end }}
+        </div>
+    </main>
+{{ end }}

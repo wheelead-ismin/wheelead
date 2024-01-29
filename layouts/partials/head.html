@@ -1,0 +1,38 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ range .Site.Author }}{{ . }} {{ end }}{{ end }}">
+<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.homeSubtitle }}{{ else }}{{ if .Params.Description }}{{ .Params.Description }}{{ else }}{{ .Summary | plainify }}{{ end }}{{ end }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+
+<!-- *Nom de la page dans le navigateur -->
+{{ block "title" . }}
+    <title>
+        {{ if .IsHome }}
+            {{ $.Site.Title }}
+        {{ else }}
+            {{ .Title }} :: {{ $.Site.Title }}
+        {{ end }}
+    </title>
+{{ end }}
+
+<!-- *Import des drapeaux (pour les messages "aussi disponible en") -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+
+<!-- *Importation et compilation du SCSS -->
+{{ $scss := resources.Get "scss/main.scss" }}
+{{ $style := $scss | resources.ToCSS }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+<!-- *Icônes de page et de raccourci -->
+<link rel="icon" href="/images/common/favicon.webp" type="image/webp" sizes="128x71">
+<!-- Il vaudrait mieux utiliser la ligne suivante mais elle ne marche pas -->
+<!-- <link rel="icon" href="{{ $.Site.Params.favicon }}" type="image/webp" sizes="128x71"> -->
+
+<!-- *Ne sait pas à quoi ça sert mais si on enlève ça casse tout (ne pas enlever) -->
+{{ template "_internal/schema.html" . }}
+
+<!-- *Ajout de la date de l'article dans les metadata de la page -->
+{{ if isset .Params "date" }}
+    <meta property="article:published_time" content="{{ time .Date }}" />
+{{ end }}

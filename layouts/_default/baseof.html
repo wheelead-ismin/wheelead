@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+    <head>
+        <!-- *Données générales -->
+        {{ partial "head.html" . }}
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- *En-tête (barre du menu) -->
+            {{ partial "header.html" . }}
+
+            <!-- *Contenu de la page -->
+            <div class="content">
+                {{ block "main" . }}
+                {{ end }}
+            </div>
+
+            <!-- *Pied de page -->
+            {{ partial "footer.html" . }}
+        </div>
+
+        <!-- *Importation du JS -->
+        {{ partial "javascript.html" . }}
+    </body>
+</html>

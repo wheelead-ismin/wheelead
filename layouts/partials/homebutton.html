@@ -1,0 +1,13 @@
+<a href="{{ .Site.BaseURL | relLangURL }}" style="text-decoration: none;">
+    <div class="logo">
+        {{ if .Site.Params.homebutton.path }}
+            <img src="{{ .Site.Params.homebutton.path }}" alt="{{ .Site.Params.homebutton.alt }}" />
+        {{ else }}
+            <span class="logo__text">{{ with .Site.Params.homebutton.logoText }}{{ . }}{{ else }}hello{{ end }}</span>
+            <span class="logo__cursor" style=
+                  "{{ with.Site.Params.homebutton.logoCursorDisabled }}visibility:hidden;{{ end }}
+                   {{ with.Site.Params.homebutton.logoCursorAnimate  }}animation-duration:{{ . }};{{ end }}">
+            </span>
+        {{ end }}
+    </div>
+</a>

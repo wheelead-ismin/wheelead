@@ -1,0 +1,64 @@
+stages:
+    - test
+    - build
+    - deploy
+
+Noms des fichiers de contenu:
+    # le dossier auteurs est ignoré tant que le problème des accents n'est pas réglé.
+    stage: test
+    script: |
+        PASS=0
+        for filename in $(find content/*);
+        do
+            if [[ !filename =~ content/auteurs/* ]]; then
+                if [[ !$filename =~ ^[0-9a-z./_]+$ ]];then
+                    echo $filename
+                    echo FAIL
+                    PASS=1
+                fi
+            fi
+        done
+        exit ${PASS}
+
+Noms des images:
+    stage: test
+    script: |
+        PASS=0
+        for filename in $(find static/images/* -type f);
+        do
+            if [[ $filename =~ ^[0-9a-z/_]+.[0-9a-z/_]+$ ]];then
+                :
+            else
+                echo $filename
+                echo FAIL
+                PASS=1
+            fi
+        done
+        exit ${PASS}
+
+Formats des images:
+    stage: test
+    script: |
+        PASS=0
+        for filename in $(find static/images/* -type f);
+        do
+            if [[ $filename =~ ^[0-9a-z/_]+.webp$ ]];then
+                :
+            else
+                echo $filename
+                echo FAIL
+                PASS=1
+            fi
+        done
+        exit ${PASS}
+
+pages:
+    stage: build
+    image: "registry.gitlab.com/pages/hugo/hugo_extended:0.109.0"
+    script:
+        - hugo
+    artifacts:
+        paths:
+            - public
+    only:
+        - main

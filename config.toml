@@ -1,0 +1,159 @@
+baseURL = ""
+title   = "WHEELEAD"
+languageCode = "en-us"
+
+defaultContentLanguage = "fr"
+defaultContentLanguageInSubdir = true
+enableMissingTranslationPlaceholders = false
+
+PygmentsCodeFences = true
+PygmentsStyle = "monokai"
+
+paginate  = 10
+rssLimit  = 10  # Maximum number of items in the RSS feed.
+copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
+
+# googleAnalytics = ""
+# disqusShortname = ""
+
+contentDir   = "content"
+dataDir      = "data"
+layoutDir    = "layouts"
+publishDir   = "public"
+
+buildDrafts  = false
+buildFuture  = true
+buildExpired = false
+canonifyURLs = true
+
+enableRobotsTXT = true
+enableGitInfo   = false
+enableEmoji     = true
+disableRSS     = false
+disableSitemap = false
+disable404     = false
+disableHugoGeneratorInject = false
+
+[permalinks]
+  posts = "/posts/:year/:month/:title/"
+
+[author]
+  name = "WHEELEAD"
+
+[taxonomies]
+  # tag      = "tags"
+  # category = "categories"
+  # series   = "series"
+  auteur = "auteurs"
+
+[params]
+  # Metadata mostly used in document's head
+  #
+  description = "Site de WHEELEAD"
+  keywords = "concours inovgames equipe ISMIN"
+  images = [""]
+
+
+  # Set disableReadOtherPosts to true in order to hide the links to other posts.
+  #
+  # disableReadOtherPosts = false
+
+  enableThemeToggle = true
+
+
+  # Sharing buttons
+  #
+  # There are a lot of buttons preconfigured. If you want to change them,
+  # generate the buttons here: https://sharingbuttons.io
+  # and add them into your own `layouts/partials/sharing-buttons.html`
+  #
+  # enableSharingButtons = true
+
+  enableGlobalLanguageMenu = true
+
+
+  # Toggle this option need to rebuild SCSS, requires extended version of Hugo
+  #
+  justifyContent = false  # Set "text-align: justify" to .post-content.
+
+
+  # Custom footer
+  #
+  [params.footer]
+    trademark = true
+    # rss = false
+    # copyright = false
+    author = true
+
+    topText = []
+    bottomText = [
+      "Powered by <a href=\"http://gohugo.io\">Hugo</a>",
+    ]
+
+
+  # Colors for favicons
+  #
+  # [params.favicon.color]
+    # mask = "#1b1c1d"
+    # msapplication = "#1b1c1d"
+    # theme = "#1b1c1d"
+
+  [params.homebutton]
+    logoText     = ">$ cd /home/"
+    # path = "/images/wheelead.webp"
+    # Set true to remove the logo cursor entirely.
+    # logoCursorDisabled = false
+    # Set to a valid CSS time value to change the animation duration, "0s" to disable.
+    # logoCursorAnimate  = "2s"
+  
+  # Logo AREM de la page principale
+  [params.logo]
+    path = "/images/wheelead.webp"
+
+  favicon = "/images/common/favicon.webp"
+
+  #* Social icons
+
+
+
+
+  #* Partenaires
+  # Les logos doivent être dans le dossier static/images/partenaires/
+
+  [[params.partner]]
+    name = "STMicroelectronics"
+    url = "https://www.st.com/content/st_com/en.html"
+    logo = "/images/partenaires/stmicroelectronics.webp"
+
+
+
+  [[params.partner]]
+    name = "École des Mines de Saint-Étienne"
+    url = "https://www.mines-stetienne.fr/"
+    logo = "/images/partenaires/ecole.webp"
+
+ 
+
+[languages]
+  [languages.fr]
+    weight = 1
+    home_subtitle = "We lead, we love, we lie"
+
+    [languages.fr.menu]
+      [[languages.fr.menu.main]]
+        identifier = "notre_projet"
+        name       = "Notre Projet"
+        url        = "notre_projet/"
+        weight     = 10
+      [[languages.fr.menu.main]]
+        identifier = "documentation"
+        name       = "Documentation"
+        url        = "doctumentation/"
+        weight     = 20
+      [[languages.fr.menu.main]]
+        identifier = "equipe"
+        name       = "Equipe"
+        url        = "equipe/"
+        weight     = 30
+
+

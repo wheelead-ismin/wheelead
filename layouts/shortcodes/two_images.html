@@ -1,0 +1,26 @@
+<div class="multiple-images">
+    <figure>
+        <img src='{{ .Get "source_left" }}'
+              alt='{{ .Get "alt_left" }}'
+              style='{{ if not (isset .Params "title_left") }}
+                        border-radius:10px;
+                     {{ end }}'>
+        {{ if isset .Params "title_left" }}
+            <figcaption>
+                {{ .Get "title_left" }}
+            </figcaption>
+        {{ end }}
+    </figure>
+    <figure>
+        <img src='{{ .Get "source_right" }}'
+              alt='{{ .Get "alt_right" }}'
+              style='{{ if not (isset .Params "title_right") }}
+                        border-radius:10px;
+                     {{ end }}'>
+        {{ if isset .Params "title_right" }}
+            <figcaption>
+                {{ .Get "title_right" }}
+            </figcaption>
+        {{ end }}
+    </figure>
+</div>

@@ -1,0 +1,104 @@
+.multiple-images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+
+    @media (max-width: 400px) {
+        flex-wrap: wrap;
+    }
+
+    figure {
+        padding: 0;
+        margin: 2%;
+        // height: 100%;
+
+        @media (max-width: 400px) {
+            width: 100%;
+        }
+    }
+}
+
+figure {
+    display: table;
+    max-width: 100%;
+    margin: 25px 0;
+    // border-radius: 10px;
+    // border-width: 100px;
+    // border-color: $light-color-secondary;
+
+    // @media (prefers-color-scheme: dark) {
+    //     border-color: $dark-background-secondary;
+    // }
+
+    // [data-theme=light] & {
+    //     border-color: $light-color-secondary;
+    // }
+
+    // [data-theme=dark] & {
+    //     border-color: $dark-background-secondary;
+    // }
+
+    &.left {
+        margin-right: auto;
+    }
+
+    &.left-floated {
+        margin-right: auto;
+        // display: block;
+        float: left;
+        img {
+            margin: 20px 20px 20px 0;
+        }
+    }
+
+    &.center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &.right {
+        margin-left: auto;
+    }
+
+    &.right-floated {
+        margin-left: auto;
+        float: right;
+        img {
+            margin: 20px 0 20px 20px;
+        }
+    }
+
+    img {
+        border-start-end-radius: 10px;
+        border-start-start-radius: 10px;
+        background-color: white;
+    }
+
+    figcaption {
+        font-size: 14px;
+        margin-top: 0px;
+        font-weight: bold;
+        text-align: center;
+        border-end-start-radius: 10px;
+        border-end-end-radius: 10px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        background-color: $light-color-secondary;
+        color: $light-color;
+
+        @media (prefers-color-scheme: dark) {
+            background-color: $dark-background-secondary;
+            color: $dark-color-secondary;
+        }
+
+        [data-theme=light] & {
+            background-color: $light-color-secondary;
+            color: $light-color;
+        }
+
+        [data-theme=dark] & {
+            background-color: $dark-background-secondary;
+            color: $dark-color-secondary;
+        }
+    }
+}
