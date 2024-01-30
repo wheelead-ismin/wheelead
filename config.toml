@@ -125,6 +125,10 @@ disableHugoGeneratorInject = false
     url = "https://www.st.com/content/st_com/en.html"
     logo = "/images/partenaires/stmicroelectronics.webp"
 
+[[params.partner]]
+    name = "I-novmicro"
+    url = "https://campus-industriefutur-sud.com/i-novmicro/"
+    logo = "/images/partenaires/inovmicro.webp"
 
 
   [[params.partner]]
@@ -137,23 +141,28 @@ disableHugoGeneratorInject = false
 [languages]
   [languages.fr]
     weight = 1
-    home_subtitle = "We lead, we love, we lie"
+    home_subtitle = "Un projet pour les inovgames !"
 
     [languages.fr.menu]
       [[languages.fr.menu.main]]
-        identifier = "notre_projet"
+        identifier = "projet"
         name       = "Notre Projet"
-        url        = "notre_projet/"
+        url        = "projet/"
         weight     = 10
       [[languages.fr.menu.main]]
         identifier = "documentation"
         name       = "Documentation"
-        url        = "doctumentation/"
+        url        = "documentation/"
         weight     = 20
       [[languages.fr.menu.main]]
         identifier = "equipe"
         name       = "Equipe"
         url        = "equipe/"
         weight     = 30
+      [[languages.fr.menu.main]]
+        identifier = "demonstration"
+        name       = "Démonstration"
+        url        = "demonstration/"
+        weight     = 40  
 
 
